@@ -54,6 +54,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
   @Input() imageURL: string;
   @Input() imageBase64: string;
   @Input() imageFile: File;
+  @Input() fileIndex = 0;
 
   @Input() format: OutputFormat = this.settings.format;
   @Input() transform: ImageTransform = {};
@@ -152,7 +153,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
       this.reset();
     }
     if (changes.imageChangedEvent && this.isValidImageChangedEvent()) {
-      this.loadImageFile(this.imageChangedEvent.target.files[0]);
+      this.loadImageFile(this.imageChangedEvent.target.files[this.fileIndex]);
     }
     if (changes.imageURL && this.imageURL) {
       this.loadImageFromURL(this.imageURL);
